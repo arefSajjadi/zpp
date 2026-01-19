@@ -1,28 +1,32 @@
-FROM docker.arvancloud.ir/node:18-alpine
-
-WORKDIR /app
-
-COPY . .
-
-RUN npm install
-
-RUN npm run build
-
-CMD ["npm", "start"]
-
-
-
-name: staging_main
-
-services:
+ervices:
   app:
-    container_name: staging.ziarat
-    image: "next_ziarat_staging_image:${TIMESTAMP}"
-    restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile
-    env_file:
-     - .env
+    container_name: "api.ziarat"
+    image: php-laravel:8.2
+    volumes:
+      - ./src:/var/www/
+      - ./php.ini:/usr/local/etc/php/php.ini
     ports:
-      - "127.0.0.1:8083:3000"
+      - "127.0.0.1:6060:80"
+    restart: always
+    networks:
+      - database_mysql_network
+  staging:
+    container_name: "api-staging.ziarat"
+    image: php-laravel:8.2
+    volumes:
+      - ./src:/var/www/
+      - ./php.ini:/usr/local/etc/php/php.ini
+    environment:
+      - APP_ENV=staging
+      - DB_DATABASE=ziarat_staging
+      - APP_NAME=ziarat_staging
+    ports:
+      - "127.0.0.1:6090:80"
+    restart: always
+    networks:
+      - database_mysql_network
+
+
+networks:
+  database_mysql_network:
+    external: true
