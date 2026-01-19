@@ -1,25 +1,57 @@
-<VirtualHost *:80>
-    ServerAdmin arefsajjadi80@gmail.com
-    ServerName localhost
-    ServerAlias oauthweb
-    DocumentRoot /var/www/public
+APP_NAME=ziarat.co
+APP_ENV=production
+APP_KEY=base64:bR4G137p4E9RghoqblBCMZMCxgLMKaZFI7werxpU5ZQ=
+APP_DEBUG=false
+APP_URL=https://api.ziarat.co
 
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
 
-    <Directory /var/www>
-        Options FollowSymLinks
-        AllowOverride All
-    </Directory>
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=ziarat
+DB_USERNAME=root
+DB_PASSWORD=rootroot
 
-    <Directory /var/www/public>
-         Options Indexes FollowSymLinks MultiViews
-         AllowOverride All
-         Order allow,deny
-         allow from all
-         Header set Access-Control-Allow-Origin: *
-         Header set Access-Control-Allow-Methods: 'GET,POST,PATCH,DELETE,PUT,OP>
-         Header set Access-Control-Allow-Headers: 'Origin, Content-Type, Author>
-    </Directory>
-</VirtualHost>
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
 
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_HOST=redis
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+#SADAD_TERMINAL_ID=24095674
+#SADAD_MERCHANT_ID=000000140336964
+#SADAD_API_KEY=8v8AEee8YfZX+wwc1TzfShRgH3O9WOho
+
+
+SADAD_TERMINAL_ID=24103735
+SADAD_MERCHANT_ID=000000140342129
+SADAD_API_KEY=hw3hgL7wQR48egD24CodYRAmqUaljrCk
+SADAD_CALLBACK_URL=https://api.ziarat.co/api/order/%s/verify
+
+MELAT_WSDL=https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl
+MELAT_TERMINAL_ID=8673846
+MELAT_USERNAME=8673846
+MELAT_PASSWORD=23733421
+
+SMS_API_KEY=70554A486D34716F396252647438706B64412B37466A4473374E593749323774386744707A7158647362303D
+
+PARSIAN_PIN=6Rh4mtnyQ35HPJ5A7EST
